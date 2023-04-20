@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@testing-library/jest-dom';
 
-import { postComment, getListcomments, displayComment } from './popup.js';
+import { postComment, getListcomments, displayComment, handleSubmit } from './popup.js';
 
 // Mock fetch function
 global.fetch = jest.fn(() => Promise.resolve({
@@ -108,3 +108,30 @@ describe('displayComment', () => {
     expect(rows.length).toBe((3));
   });
 });
+
+describe('handleSubmit', () => {
+    it('should call postComment with the correct data and clear the input fields', async () => {
+      // Set up mock functions and test data
+      const mockPostComment = jest.fn();
+      const data = { item_id: 1, username: 'John', comment: 'Great movie!' };
+      const event = { 
+        preventDefault: jest.fn(),
+        target: {
+          elements: {
+            item_id: { value: data.item_id },
+            username: { value: data.username },
+            comment: { value: data.comment }
+          }
+        }
+      };
+  
+      // Call handleSubmit with mock data
+      await handleSubmit(event, mockPostComment);
+  
+      // Assert that postComment was called with the correct data and input fields were cleared
+      expect(mockPostComment).toHaveBeenCalledWith(data);
+      expect(event.target.elements.item_id.value).toBe('');
+      expect(event.target.elements.username.value).toBe('');
+      expect(event.target.elements.comment.value).toBe('');
+    });
+  });

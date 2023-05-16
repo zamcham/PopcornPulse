@@ -60,9 +60,9 @@ PopcornPulse is a web app that uses Webpack, Jest, HTML, SCSS, and JavaScript. I
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo Coming Soon <a name="live-demo"></a>
+## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link Coming Soon](#)
+- [Live Demo](https://popcornpulse.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
